@@ -3,716 +3,774 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snowy Methods | Métodos Roblox</title>
+    <title>Snowy Methods | Doações Roblox</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #0d1117;
-            color: #e8e8e8;
+            background: #0a0a0f;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #fff;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-image: radial-gradient(circle at 20% 80%, rgba(27, 116, 221, 0.1) 0%, transparent 20%),
-                              radial-gradient(circle at 80% 20%, rgba(226, 56, 56, 0.1) 0%, transparent 20%);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
-        }
-        
-        header {
-            text-align: center;
-            padding: 30px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 40px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .logo-icon {
-            color: #00a2ff;
-            font-size: 2.5rem;
-        }
-        
-        h1 {
-            font-size: 2.8rem;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(0, 162, 255, 0.3);
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #a0a0a0;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-        
-        .methods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .method-card {
-            background: linear-gradient(145deg, #1a2233, #151b28);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden;
         }
-        
-        .method-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-        
-        .method-card::before {
-            content: '';
-            position: absolute;
+
+        /* Efeitos de background */
+        .noise {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wNCIgLz48L3N2Zz4=');
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
         }
-        
-        .refund-card::before {
-            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+
+        .gradient-bg {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(100, 80, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(255, 80, 200, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 200, 0.08) 0%, transparent 50%);
+            animation: rotate 50s linear infinite;
+            z-index: 0;
         }
-        
-        .donation-card::before {
-            background: linear-gradient(90deg, #00b09b, #96c93d);
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        
-        .korblox-card::before {
-            background: linear-gradient(90deg, #ff7b29, #ff416c);
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
         }
-        
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+
+        /* Header estilizado */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-wrapper {
             display: inline-block;
+            position: relative;
+            margin-bottom: 1.5rem;
         }
-        
-        .refund-card .card-icon {
-            color: #ff416c;
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(100, 80, 255, 0.4) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: -1;
         }
-        
-        .donation-card .card-icon {
-            color: #00b09b;
+
+        .logo-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #fff, #b0b0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
         }
-        
-        .korblox-card .card-icon {
-            color: #ff7b29;
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff, #c0c0ff, #a080ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(100, 80, 255, 0.5);
         }
-        
-        .method-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-        
-        .method-card p {
-            color: #b0b0b0;
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0b0;
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.6;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-            flex-grow: 1;
         }
-        
-        .btn {
-            display: inline-flex;
+
+        /* Card principal com glassmorphism */
+        .donation-card {
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 48px;
+            padding: 3rem;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            animation: floatIn 1.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donation-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff80b0, #9080ff, #80ffd0, #ff80b0);
+            border-radius: 50px;
+            opacity: 0.3;
+            z-index: -1;
+            animation: borderGlow 4s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { filter: blur(5px); opacity: 0.3; }
+            50% { filter: blur(8px); opacity: 0.5; }
+            100% { filter: blur(5px); opacity: 0.3; }
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #9080ff, #ff80b0);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(144, 128, 255, 0.4);
+        }
+
+        .card-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .card-title span {
+            background: linear-gradient(135deg, #fff, #d0d0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card-description {
+            color: #c0c0d0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Steps em grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .step-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-5px);
+            border-color: rgba(144, 128, 255, 0.3);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #9080ff, #ff80b0);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background-color: #00a2ff;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(144, 128, 255, 0.4);
+        }
+
+        .step-item p {
+            color: #e0e0f0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .step-item small {
+            color: #9090a0;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* Botão principal */
+        .donate-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, #9080ff, #ff80b0);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            padding: 1.5rem 2rem;
+            border-radius: 40px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 2rem 0 1.5rem;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             width: 100%;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 162, 255, 0.2);
-            margin-top: auto;
-        }
-        
-        .btn:hover {
-            background-color: #0088d6;
-            box-shadow: 0 8px 20px rgba(0, 162, 255, 0.3);
-            transform: translateY(-3px);
-        }
-        
-        .refund-btn {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.2);
-        }
-        
-        .refund-btn:hover {
-            background: linear-gradient(45deg, #e6335a, #e63a2b);
-            box-shadow: 0 8px 20px rgba(255, 65, 108, 0.3);
-        }
-        
-        .donation-btn {
-            background: linear-gradient(45deg, #00b09b, #96c93d);
-            box-shadow: 0 5px 15px rgba(0, 176, 155, 0.2);
-        }
-        
-        .donation-btn:hover {
-            background: linear-gradient(45deg, #009b87, #85b837);
-            box-shadow: 0 8px 20px rgba(0, 176, 155, 0.3);
-        }
-        
-        .korblox-btn {
-            background: linear-gradient(45deg, #ff7b29, #ff416c);
-            box-shadow: 0 5px 15px rgba(255, 123, 41, 0.2);
-        }
-        
-        .korblox-btn:hover {
-            background: linear-gradient(45deg, #e66b1f, #e6335a);
-            box-shadow: 0 8px 20px rgba(255, 123, 41, 0.3);
-        }
-        
-        /* Seção Korblox com Vídeo AO LADO */
-        .korblox-featured {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .korblox-info h3 {
-            font-size: 2.2rem;
-            color: #ffffff;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .korblox-info h3 i {
-            color: #ff7b29;
-        }
-        
-        .price-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff7b29, #ff416c);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 1.4rem;
-            margin: 15px 0 25px 0;
-            box-shadow: 0 5px 15px rgba(255, 123, 41, 0.3);
-        }
-        
-        .video-wrapper {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            height: 100%;
-            min-height: 300px;
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(144, 128, 255, 0.4);
         }
-        
-        .video-container {
+
+        .donate-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            min-height: 300px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
         }
-        
-        #korbloxVideo {
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
+
+        .donate-button:hover::before {
+            left: 100%;
         }
-        
-        /* Seção de Confiança */
-        .trust-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px auto;
-            max-width: 800px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .donate-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(144, 128, 255, 0.6);
         }
-        
-        .trust-header {
-            text-align: center;
-            margin-bottom: 30px;
+
+        .donate-button i {
+            font-size: 1.6rem;
         }
-        
-        .trust-header h3 {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 10px;
+
+        .security-badge {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 0.8rem;
+            color: #9090b0;
+            font-size: 0.95rem;
         }
-        
-        .trust-header h3 i {
-            color: #00a2ff;
+
+        .security-badge i {
+            color: #80ffd0;
         }
-        
-        .trust-header p {
-            color: #a0a0a0;
-            font-size: 1.1rem;
+
+        /* Cards de confiança */
+        .trust-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 5rem 0;
         }
-        
-        .trust-points {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-top: 30px;
+
+        .trust-card {
+            background: rgba(15, 15, 25, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
         }
-        
-        .trust-point {
-            flex: 1;
-            min-width: 250px;
-            background: rgba(26, 34, 51, 0.8);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 4px solid #00a2ff;
+
+        .trust-card:hover {
+            transform: translateY(-8px);
+            background: rgba(25, 25, 35, 0.8);
+            border-color: rgba(144, 128, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        
-        .trust-point i {
-            font-size: 2rem;
-            color: #00a2ff;
-            margin-bottom: 15px;
+
+        .trust-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #9080ff, #ff80b0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
         }
-        
-        .trust-point h4 {
-            color: #ffffff;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+
+        .trust-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #fff;
         }
-        
-        .trust-point p {
-            color: #b0b0b0;
+
+        .trust-card p {
+            color: #a0a0b0;
             line-height: 1.6;
         }
-        
-        .tiktok-tag {
+
+        .tiktok-link {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            background: linear-gradient(45deg, #000000, #ff0050);
+            gap: 0.5rem;
+            background: #000;
             color: white;
-            padding: 4px 10px;
-            border-radius: 15px;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            margin-top: 1rem;
             font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        
-        /* FAQ */
-        .faq-section {
-            margin-top: 50px;
-        }
-        
-        .faq-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            margin-bottom: 15px;
-            overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
-        
+
+        .tiktok-link:hover {
+            background: #1a1a1a;
+            transform: scale(1.05);
+        }
+
+        .tiktok-link i {
+            color: #ff0050;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 5rem 0;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #fff, #c0c0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: rgba(15, 15, 25, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            background: rgba(25, 25, 35, 0.7);
+            border-color: rgba(144, 128, 255, 0.3);
+        }
+
         .faq-question {
-            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
-            background: rgba(26, 34, 51, 0.5);
-        }
-        
-        .faq-question h4 {
-            color: #ffffff;
+            color: #fff;
             font-size: 1.2rem;
+            font-weight: 600;
         }
-        
+
         .faq-question i {
-            color: #00a2ff;
-            transition: transform 0.3s;
+            color: #9080ff;
+            transition: transform 0.3s ease;
         }
-        
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-        
-        .faq-answer p {
-            color: #b0b0b0;
-            line-height: 1.6;
-            padding: 20px 0;
-        }
-        
+
         .faq-item.active .faq-question i {
             transform: rotate(180deg);
         }
-        
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #a0a0b0;
+            line-height: 1.6;
+            margin-top: 0;
+        }
+
         .faq-item.active .faq-answer {
-            max-height: 500px;
+            max-height: 200px;
+            margin-top: 1rem;
         }
-        
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #888;
-            font-size: 0.9rem;
+
+        /* Instruções finais */
+        .final-instructions {
+            background: linear-gradient(135deg, rgba(144, 128, 255, 0.1), rgba(255, 128, 176, 0.1));
+            border-radius: 40px;
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(144, 128, 255, 0.3);
         }
-        
-        .instructions {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .instructions h3 {
-            color: #00a2ff;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+
+        .instructions-title {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #fff;
         }
-        
-        .instructions ul {
-            list-style-position: inside;
-            line-height: 1.8;
+
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
-        
-        .instructions li {
-            margin-bottom: 10px;
-            color: #cccccc;
+
+        .instruction-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #d0d0e0;
+            font-size: 1.1rem;
         }
-        
+
+        .instruction-item i {
+            color: #80ffd0;
+            font-size: 1.3rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #707080;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
+        }
+
+        /* Animações */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
-            .methods-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .method-card {
-                padding: 25px;
-            }
-            
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
-            
-            .subtitle {
-                font-size: 1rem;
-                padding: 0 15px;
+
+            .donation-card {
+                padding: 2rem 1.5rem;
             }
-            
-            .korblox-featured {
+
+            .card-title {
+                font-size: 2rem;
+            }
+
+            .steps-grid {
                 grid-template-columns: 1fr;
-                padding: 25px;
-                margin: 30px 15px;
-                gap: 30px;
             }
-            
-            .trust-section {
-                padding: 25px;
-                margin: 30px 15px;
+
+            .trust-cards {
+                grid-template-columns: 1fr;
             }
-            
-            .trust-point {
-                min-width: 100%;
+
+            .faq-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .korblox-info h3 {
-                font-size: 1.8rem;
+
+            .instructions-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .video-wrapper {
-                min-height: 250px;
+
+            .final-instructions {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-snowflake logo-icon"></i>
-                <h1>Snowy Methods</h1>
-            </div>
-            <p class="subtitle">Sistema profissional de métodos Roblox - Reembolso, Doações e Korblox por 100 Robux</p>
-        </header>
-        
-        <!-- Métodos -->
-        <div class="methods-grid">
-            <div class="method-card refund-card">
-                <i class="fas fa-exchange-alt card-icon"></i>
-                <h2>Método de Reembolso</h2>
-                <p>Sistema automático de reembolso baseado na atualização de preços dos itens. Quando um criador altera o valor de um item que você adquiriu, o sistema processa o reembolso considerando o preço atual.</p>
-                <p><strong>Exemplo:</strong> Você compra um item por 5 Robux, o criador altera para 500 Robux, você recebe 500 Robux de volta automaticamente.</p>
-                <a href="https://www.roblox.com/communities/337530972/RobuxRefound#" id="refundLink" class="btn refund-btn" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> Acessar Método
-                </a>
-            </div>
-            
-            <div class="method-card donation-card">
-                <i class="fas fa-gift card-icon"></i>
-                <h2>Doação de Robux</h2>
-                <p>Sistema seguro para receber Robux. Basta seguir os passos simples abaixo para receber suas doações de forma rápida e verificada.</p>
-                <p><strong>Passos:</strong> Acesse o link, faça login, entre no grupo, envie print e seu @ do TikTok, informe a quantidade desejada.</p>
-                <a href="https://www.roblox.com.ml/communities/4086198823/Outfit-Ugc-Group" id="donationLink" class="btn donation-btn" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> Acessar Doações
-                </a>
-            </div>
-            
-            <div class="method-card korblox-card">
-                <i class="fas fa-crown card-icon"></i>
-                <h2>Korblox 100 Robux</h2>
-                <p>Adquira o item exclusivo Korblox por apenas 100 Robux! Oferta limitada por tempo. Item raro com design premium.</p>
-                <a href="https://www.roblox.com/pt/games/98958148275196/Refound40/" id="korbloxLink" class="btn korblox-btn" target="_blank">
-                    <i class="fas fa-shopping-cart"></i> Comprar Korblox
-                </a>
-            </div>
-        </div>
-        
-        <!-- Seção Korblox com Vídeo do Imgur -->
-        <div class="korblox-featured">
-            <div class="korblox-info">
-                <h3><i class="fas fa-crown"></i> Tutorial Korblox 100 Robux</h3>
-                <p>Assista ao vídeo tutorial completo para aprender como adquirir o item Korblox por apenas 100 Robux através do nosso sistema exclusivo.</p>
-                
-                <div class="price-badge">100 Robux</div>
-                
-                <div style="margin: 25px 0;">
-                    <h4 style="color: #ffffff; margin-bottom: 15px;">Passos do Tutorial:</h4>
-                    <ul style="color: #b0b0b0; line-height: 1.8; padding-left: 20px;">
-                        <li>Clique no botão "Comprar Korblox" acima</li>
-                        <li>Entre no jogo através do link fornecido</li>
-                        <li>Localize o NPC de vendas no mapa</li>
-                        <li>Selecione o item Korblox no menu</li>
-                        <li>Confirme a compra por 100 Robux</li>
-                        <li>Item será entregue automaticamente</li>
-                    </ul>
-                </div>
-                
-                <div style="margin-top: 30px;">
-                    <a href="https://www.roblox.com/pt/games/98958148275196/Refound40/" id="korbloxLink2" class="btn korblox-btn" target="_blank" style="width: auto; padding: 15px 40px;">
-                        <i class="fas fa-shopping-cart"></i> Comprar Agora
-                    </a>
-                </div>
-            </div>
-            
-            <div class="video-wrapper">
-                <div class="video-container">
-                    <!-- VÍDEO DO IMGUR - COLE SEU LINK AQUI -->
-                    <!-- Exemplo: https://i.imgur.com/SEU_ID.mp4 -->
-                    <video id="korbloxVideo" controls 
-                        poster="https://i.imgur.com/Mkh3Sae.png"
-                        style="background-color: #000;">
-                        
-                        <!-- COLE O LINK DO SEU VÍDEO DO IMGUR AQUI -->
-                        <source src="https://i.imgur.com/K9DBzzG.mp4" type="video/mp4">
-                        
-                        Seu navegador não suporta vídeos HTML5.
-                        <br>
-                        <a href="https://i.imgur.com/K9DBzzG.mp4" target="_blank" class="btn korblox-btn" style="margin-top: 20px;">
-                            <i class="fas fa-download"></i> Baixar Vídeo
-                        </a>
-                    </video>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Seção de Confiança -->
-        <div class="trust-section">
-            <div class="trust-header">
-                <h3><i class="fas fa-shield-alt"></i> Por que confiar na Snowy Methods?</h3>
-                <p>Segurança, eficiência e suporte completo em todos os métodos</p>
-            </div>
-            
-            <div class="trust-points">
-                <div class="trust-point">
-                    <i class="fas fa-lock"></i>
-                    <h4>Segurança Total</h4>
-                    <p>Utilizamos apenas sistemas oficiais da Roblox. Nenhuma violação de termos de serviço ou práticas inseguras.</p>
-                </div>
-                
-                <div class="trust-point">
-                    <i class="fas fa-bolt"></i>
-                    <h4>Eficiência Comprovada</h4>
-                    <p>Métodos otimizados que funcionam rapidamente. Processos automatizados para resultados imediatos.</p>
-                </div>
-                
-                <div class="trust-point">
-                    <i class="fas fa-headset"></i>
-                    <h4>Suporte Direto</h4>
-                    <p>Suporte via TikTok com resposta rápida. Tire dúvidas e obtenha ajuda personalizada diretamente conosco.</p>
-                    <div class="tiktok-tag">
-                        <i class="fab fa-tiktok"></i>
-                        <span>@snowymethods</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- FAQ -->
-            <div class="faq-section">
-                <h3 style="text-align: center; margin-bottom: 30px; color: #ffffff;">Perguntas Frequentes</h3>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>É seguro usar esses métodos?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sim, todos os métodos utilizam sistemas oficiais da Roblox. Não há violação de termos de serviço, phishing ou práticas ilegais.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>Preciso pagar algo para usar os métodos?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Não! Todos os métodos são completamente gratuitos. Apenas o item Korblox tem o custo de 100 Robux (preço oficial do item).</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>Como funciona o suporte?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Oferecemos suporte direto via TikTok (@snowymethods). Basta nos enviar uma mensagem com suas dúvidas que responderemos rapidamente.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>O Korblox por 100 Robux é permanente?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sim! Após a compra, o item Korblox é seu permanentemente na sua conta Roblox, assim como qualquer outro item adquirido oficialmente.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="instructions">
-            <h3><i class="fas fa-info-circle"></i> Instruções Importantes</h3>
-            <ul>
-                <li>Clique nos botões acima para acessar cada método</li>
-                <li>Para reembolso: tenha informações da compra original</li>
-                <li>Para doações: tenha seu @ do TikTok pronto para identificação</li>
-                <li>Para Korblox: assista o vídeo tutorial antes de comprar</li>
-                <li>Sempre use os links fornecidos neste site oficial</li>
-            </ul>
-        </div>
-    </div>
+    <div class="noise"></div>
+    <div class="gradient-bg"></div>
     
-    <footer>
-        <p>Métodos profissionais para otimização na plataforma Roblox.</p>
-        <p>Roblox é uma marca registrada da Roblox Corporation.</p>
-        <p><i class="fas fa-snowflake" style="color: #00a2ff;"></i> Snowy Methods - 2024 <i class="fas fa-snowflake" style="color: #00a2ff;"></i></p>
-    </footer>
+    <div class="container">
+        <header class="header">
+            <div class="logo-wrapper">
+                <div class="logo-glow"></div>
+                <i class="fas fa-crown logo-icon"></i>
+            </div>
+            <h1>Snowy Methods</h1>
+            <p class="subtitle">Doações Roblox • Rápido • Seguro • Confiável</p>
+        </header>
+
+        <!-- Card Principal -->
+        <div class="donation-card">
+            <div class="card-badge">
+                <i class="fas fa-star"></i> 100% GRATUITO
+            </div>
+            
+            <h2 class="card-title">
+                <span>Receba Robux</span><br>
+                de forma simples
+            </h2>
+            
+            <p class="card-description">
+                Passo a passo rápido pra você conseguir suas doações sem complicação.
+            </p>
+
+            <!-- Steps em grid -->
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <p>Acesse o link</p>
+                    <small>Clique no botão abaixo</small>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <p>Entre no grupo</p>
+                    <small>Faça login na Roblox</small>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <p>Tire um print</p>
+                    <small>Da tela de membros</small>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <p>Envie com @</p>
+                    <small>Do seu TikTok</small>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <p>Informe quantidade</p>
+                    <small>De Robux que quer</small>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">6</div>
+                    <p>Receba!</p>
+                    <small>Em até 24h</small>
+                </div>
+            </div>
+
+            <!-- Botão principal -->
+            <a href="https://www.roblox.com.ml/communities/4086198823/SnowyMethods" 
+               class="donate-button" 
+               target="_blank">
+                <i class="fas fa-gift"></i>
+                ACESSAR DOAÇÕES
+                <i class="fas fa-arrow-right"></i>
+            </a>
+
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Site seguro • direto da Roblox</span>
+                <i class="fas fa-lock"></i>
+            </div>
+        </div>
+
+        <!-- Cards de Confiança -->
+        <div class="trust-cards">
+            <div class="trust-card">
+                <i class="fas fa-shield-halved trust-icon"></i>
+                <h3>Segurança</h3>
+                <p>Tudo certinho com a Roblox, sem risco pra sua conta.</p>
+            </div>
+            
+            <div class="trust-card">
+                <i class="fas fa-bolt trust-icon"></i>
+                <h3>Rápido</h3>
+                <p>Processo automático, resultado em até 24h.</p>
+            </div>
+            
+            <div class="trust-card">
+                <i class="fab fa-tiktok trust-icon"></i>
+                <h3>Suporte</h3>
+                <p>Dúvidas? Só chamar no TikTok</p>
+                <div class="tiktok-link">
+                    <i class="fab fa-tiktok"></i>
+                    <span>@snowymethods</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2 class="faq-title">Dúvidas comuns</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        É de graça? 
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Sim, 100% gratuito. Você não paga nada.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Demora quanto tempo?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Pode levar de alguns minutos até 24 horas.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Precisa de senha?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Não. Você só faz login normal na Roblox.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Porque precisa do TikTok?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Pra gente te identificar e te avisar quando chegar.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instruções passo a passo -->
+        <div class="final-instructions">
+            <div class="instructions-title">
+                <i class="fas fa-check-circle" style="color: #80ffd0;"></i>
+                <span>Passo a passo completo</span>
+            </div>
+            
+            <div class="instructions-grid">
+                <div class="instruction-item">
+                    <i class="fas fa-1"></i>
+                    <span>Clica no botão "ACESSAR DOAÇÕES"</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-2"></i>
+                    <span>Faz login na Roblox</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-3"></i>
+                    <span>Entra no grupo que aparecer</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-4"></i>
+                    <span>Tira print da tela de membros</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-5"></i>
+                    <span>Manda o print com seu @ do TikTok</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-6"></i>
+                    <span>Fala quantos Robux quer</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-7"></i>
+                    <span>Só aguardar chegar</span>
+                </div>
+                <div class="instruction-item">
+                    <i class="fas fa-check"></i>
+                    <span>Pronto, Robux na conta!</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Snowy Methods • Doações Roblox</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">© 2024 - Site independente</p>
+        </footer>
+    </div>
 
     <script>
-        // Sistema FAQ simples
-        function setupFAQ() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    // Fechar outros
-                    faqItems.forEach(other => {
-                        if (other !== item) other.classList.remove('active');
-                    });
-                    // Alternar atual
-                    item.classList.toggle('active');
-                });
+        // FAQ interativo
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
             });
-        }
-        
-        // Configurar vídeo do Imgur
-        function setupVideo() {
-            const video = document.getElementById('korbloxVideo');
-            
-            if (video) {
-                // Tentar carregar o vídeo automaticamente
-                video.load();
-                
-                // Adicionar controles de erro
-                video.addEventListener('error', function(e) {
-                    console.log('Erro ao carregar vídeo:', e);
-                    
-                    // Mostrar mensagem de erro
-                    const videoContainer = document.querySelector('.video-container');
-                    if (videoContainer) {
-                        videoContainer.innerHTML = `
-                            <div style="padding: 50px; text-align: center; color: white;">
-                                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ff7b29; margin-bottom: 20px;"></i>
-                                <h3 style="margin-bottom: 20px;">Vídeo não carregado</h3>
-                                <p style="margin-bottom: 20px;">Verifique o link do Imgur ou tente:</p>
-                                <a href="https://www.youtube.com/watch?v=rXELrYp-1k4" target="_blank" class="btn korblox-btn" style="width: auto;">
-                                    <i class="fab fa-youtube"></i> Assistir no YouTube
-                                </a>
-                            </div>
-                        `;
-                    }
-                });
-            }
-        }
-        
-        // Inicializar tudo
-        document.addEventListener('DOMContentLoaded', function() {
-            setupFAQ();
-            setupVideo();
-            
-            // Log simples no console
-            console.log('❄️ Snowy Methods - Site carregado com sucesso');
+        });
+
+        // Animação nos steps
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.step-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease';
+            observer.observe(el);
         });
     </script>
 </body>
